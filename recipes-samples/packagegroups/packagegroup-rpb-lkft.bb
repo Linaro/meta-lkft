@@ -17,6 +17,8 @@ RDEPENDS_packagegroup-rpb-lkft = "\
     kselftests-mainline \
     kselftests-next \
     libgpiod \
+    libsan \
+    libubsan \
     net-snmp \
     ${@bb.utils.contains("TUNE_ARCH", "arm", "", "numactl", d)} \
     ${@bb.utils.contains_any("TUNE_ARCH", "arm i686", "", "packetdrill", d)} \
