@@ -42,6 +42,13 @@ do_configure() {
         echo 'CONFIG_SERIAL_8250_OMAP=y' >> ${B}/.config
         echo 'CONFIG_POSIX_MQUEUE=y' >> ${B}/.config
       ;;
+      mips)
+        cp ${S}/arch/mips/configs/generic_defconfig ${B}/.config
+        echo 'CONFIG_CPU_MIPS32_R2=y' >> ${B}/.config
+        echo 'CONFIG_MIPS_O32_FP64_SUPPORT=y' >> ${B}/.config
+        echo 'CONFIG_HIGHMEM=y' >> ${B}/.config
+        echo 'CONFIG_CPU_LITTLE_ENDIAN=y' >> ${B}/.config
+      ;;
       x86_64)
         cp ${S}/arch/x86/configs/x86_64_defconfig ${B}/.config
         echo 'CONFIG_IGB=y' >> ${B}/.config
