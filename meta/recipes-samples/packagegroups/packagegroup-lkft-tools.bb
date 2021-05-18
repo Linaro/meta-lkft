@@ -23,6 +23,7 @@ RDEPENDS_packagegroup-lkft-tools-basics = "\
     haveged \
     jq \
     libgpiod \
+    libgpiod-tools \
     ${@bb.utils.contains("TUNE_ARCH", "arm", "", "numactl", d)} \
     net-snmp \
     perf \
