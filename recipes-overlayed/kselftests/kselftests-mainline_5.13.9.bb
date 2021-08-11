@@ -6,11 +6,11 @@ SRC_URI = "https://www.kernel.org/pub/linux/kernel/v5.x/linux-${PV}.tar.xz"
 # Patches inappropriate or not yet merged by upstream
 # Some patches may have been submitted to upstream
 SRC_URI += "\
-    file://0001-selftests-lib-allow-to-override-CC-in-the-top-level-Makefile-v5.5.patch \
+    file://0001-selftests-lib-allow-to-override-CC-in-the-top-level-Makefile-v5.12.patch \
 "
 
-SRC_URI[md5sum] = "753adc474bf799d569dec4f165ed92c3"
-SRC_URI[sha256sum] = "dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43"
+SRC_URI[md5sum] = "f1ce10256453cb1746536d09f9daf263"
+SRC_URI[sha256sum] = "72fe7cc1f0363523061659a21e24754697b27f405cb88a41a63038629636159a"
 
 S = "${WORKDIR}/linux-${PV}"
 
