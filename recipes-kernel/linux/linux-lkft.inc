@@ -228,6 +228,9 @@ RRECOMMENDS_${KERNEL_PACKAGE_NAME}-image_append = " ${KERNEL_PACKAGE_NAME}-devic
 DEPENDS += "openssl-native"
 export HOST_EXTRACFLAGS += "-I${STAGING_INCDIR_NATIVE}"
 
+# Makefile:23: *** dtc needs libyaml for DT
+DEPENDS += "libyaml"
+
 # Automatically depend on lzop/lz4-native if CONFIG_KERNEL_LZO/LZ4 is enabled
 python () {
     try:
