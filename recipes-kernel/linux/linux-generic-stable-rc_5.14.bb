@@ -41,6 +41,9 @@ do_configure() {
         echo 'CONFIG_ARM_TI_CPUFREQ=y' >> ${B}/.config
         echo 'CONFIG_SERIAL_8250_OMAP=y' >> ${B}/.config
         echo 'CONFIG_POSIX_MQUEUE=y' >> ${B}/.config
+        # Disable ARM 32-bits plug-ins for GCC 9-
+        echo 'CONFIG_GCC_PLUGINS=n' >> ${B}/.config
+        echo 'CONFIG_GCC_PLUGIN_ARM_SSP_PER_TASK=n' >> ${B}/.config
       ;;
       mips)
         cp ${S}/arch/mips/configs/malta_qemu_32r6_defconfig ${B}/.config
