@@ -103,6 +103,13 @@ do_configure() {
     oe_runmake -C ${B} savedefconfig
 }
 
+do_compile_prepend() {
+    sed -i \
+        -e 's#^%.dtb: dt_binding_check #%.dtb: #' \
+        -e 's# \$(dtstree)/\$\*.dt.yaml$##' \
+        ${S}/Makefile
+}
+
 do_deploy_append() {
     cp -a ${B}/defconfig ${DEPLOYDIR}
     cp -a ${B}/.config ${DEPLOYDIR}/config
