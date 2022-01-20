@@ -17,4 +17,5 @@ RDEPENDS_packagegroup-lkft-testsuites = "\
     ltp \
     perf-tests \
     s-suite \
+    vdsotest \
     "
