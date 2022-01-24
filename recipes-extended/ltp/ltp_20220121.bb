@@ -13,6 +13,7 @@ DEPENDS = "attr libaio libcap acl openssl zip-native"
 DEPENDS_append_libc-musl = " fts "
 EXTRA_OEMAKE_append_libc-musl = " LIBC=musl "
 EXTRA_OECONF_append_libc-musl = " LIBS=-lfts "
+export HOSTCC = "${BUILD_CC}"
 
 # since ltp contains x86-64 assembler which uses the frame-pointer register,
 # set -fomit-frame-pointer x86-64 to handle cases where optimisation
@@ -22,15 +23,9 @@ CFLAGS_append_x86-64 = " -fomit-frame-pointer"
 
 CFLAGS_append_powerpc64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS_append_mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
-SRCREV = "12beeda351b5d758a729aaf695b836ccc9eb5304"
+SRCREV = "b0561ad8d9ee9fe1244b5385e941eb65a21e91a1"
 
-SRC_URI = "git://github.com/linux-test-project/ltp.git \
-           file://0001-Remove-OOM-tests-from-runtest-mm.patch \
-           file://0002-lib-fix-MemAvailable-parsing.patch \
-           file://0003-lapi-rtnetlink.h-Fix-include-guards.patch \
-           file://0004-lapi-Create-if_addr.h-and-reuse-it-in-rtnetlink.h.patch \
-           file://0005-lapi-if_addr.h-Define-IFA_FLAGS.patch \
-           "
+SRC_URI = "git://github.com/linux-test-project/ltp.git"
 
 S = "${WORKDIR}/git"
 
