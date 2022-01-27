@@ -30,5 +30,6 @@ RDEPENDS_packagegroup-rpb-lkft = "\
     qemu \
     s-suite \
     tzdata \
+    vdsotest \
     xz \
     "
