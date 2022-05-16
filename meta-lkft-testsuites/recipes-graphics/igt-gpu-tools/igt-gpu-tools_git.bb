@@ -5,12 +5,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=67bfee4df38fa6ecbe3a675c552d4c08"
 
 LICENSE = "MIT"
 
-inherit meson
+inherit meson pkgconfig
 
-SRCREV = "d16ad07e7f2a028e14d61f570931c87fa5ce404c"
-PV = "1.25+git${SRCPV}"
+SRCREV = "203def046b466fb2da67f9f15552d84e1c0b41f2"
+PV = "1.26"
 
-SRC_URI = "git://gitlab.freedesktop.org/drm/igt-gpu-tools.git;protocol=https"
+SRC_URI = "git://gitlab.freedesktop.org/drm/igt-gpu-tools.git;protocol=https \
+    file://lib-meson-build-fix-underscorify-call.patch \
+    "
 
 S = "${WORKDIR}/git"
 
