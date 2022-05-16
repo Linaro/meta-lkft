@@ -229,7 +229,7 @@ DEPENDS += "openssl-native"
 export HOST_EXTRACFLAGS += "-I${STAGING_INCDIR_NATIVE}"
 
 # Makefile:23: *** dtc needs libyaml for DT
-DEPENDS += "libyaml"
+DEPENDS += "libyaml-native"
 
 # Automatically depend on lzop/lz4-native if CONFIG_KERNEL_LZO/LZ4 is enabled
 python () {
