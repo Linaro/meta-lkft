@@ -13,7 +13,6 @@ RDEPENDS_packagegroup-lkft-testsuites = "\
     kernel-selftests \
     kselftests-mainline \
     kselftests-next \
-    ${@bb.utils.contains("TUNE_ARCH", "mips", "", "libhugetlbfs-tests", d)} \
     ltp \
     perf-tests \
     s-suite \
