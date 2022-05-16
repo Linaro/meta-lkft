@@ -12,19 +12,19 @@ LIC_FILES_CHKSUM = "\
 DEFAULT_PREFERENCE = "-1"
 
 DEPENDS = "attr libaio libcap acl openssl zip-native"
-DEPENDS_append_libc-musl = " fts "
-EXTRA_OEMAKE_append_libc-musl = " LIBC=musl "
-EXTRA_OECONF_append_libc-musl = " LIBS=-lfts "
+DEPENDS:append:libc-musl = " fts "
+EXTRA_OEMAKE:append:libc-musl = " LIBC=musl "
+EXTRA_OECONF:append:libc-musl = " LIBS=-lfts "
 export HOSTCC = "${BUILD_CC}"
 
 # since ltp contains x86-64 assembler which uses the frame-pointer register,
 # set -fomit-frame-pointer x86-64 to handle cases where optimisation
 # is set to -O0 or frame pointers have been enabled by -fno-omit-frame-pointer
 # earlier in CFLAGS, etc.
-CFLAGS_append_x86-64 = " -fomit-frame-pointer"
+CFLAGS:append_x86-64 = " -fomit-frame-pointer"
 
-CFLAGS_append_powerpc64 = " -D__SANE_USERSPACE_TYPES__"
-CFLAGS_append_mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
+CFLAGS:append:powerpc64 = " -D__SANE_USERSPACE_TYPES__"
+CFLAGS:append:mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
 SRCREV = "12beeda351b5d758a729aaf695b836ccc9eb5304"
 
 PV = "20210927+git${SRCPV}"
@@ -73,7 +73,7 @@ do_install(){
     sed -e '/^memcg_stress/d' -i ${D}${prefix}/runtest/controllers
 }
 
-RDEPENDS_${PN} = "\
+RDEPENDS:${PN} = "\
     attr \
     bash \
     bc \
@@ -103,11 +103,11 @@ RDEPENDS_${PN} = "\
     tar \
 "
 
-FILES_${PN} += "${prefix}/* ${prefix}/runtest/* ${prefix}/scenario_groups/* ${prefix}/testcases/bin/* ${prefix}/testcases/bin/*/bin/* ${prefix}/testscripts/* ${prefix}/testcases/open_posix_testsuite/* ${prefix}/testcases/open_posix_testsuite/conformance/* ${prefix}/testcases/open_posix_testsuite/Documentation/* ${prefix}/testcases/open_posix_testsuite/functional/* ${prefix}/testcases/open_posix_testsuite/include/* ${prefix}/testcases/open_posix_testsuite/scripts/* ${prefix}/testcases/open_posix_testsuite/stress/* ${prefix}/testcases/open_posix_testsuite/tools/* ${prefix}/testcases/data/nm01/lib.a ${prefix}/lib/libmem.a"
+FILES:${PN} += "${prefix}/* ${prefix}/runtest/* ${prefix}/scenario_groups/* ${prefix}/testcases/bin/* ${prefix}/testcases/bin/*/bin/* ${prefix}/testscripts/* ${prefix}/testcases/open_posix_testsuite/* ${prefix}/testcases/open_posix_testsuite/conformance/* ${prefix}/testcases/open_posix_testsuite/Documentation/* ${prefix}/testcases/open_posix_testsuite/functional/* ${prefix}/testcases/open_posix_testsuite/include/* ${prefix}/testcases/open_posix_testsuite/scripts/* ${prefix}/testcases/open_posix_testsuite/stress/* ${prefix}/testcases/open_posix_testsuite/tools/* ${prefix}/testcases/data/nm01/lib.a ${prefix}/lib/libmem.a"
 
 # Avoid stripping some generated binaries otherwise some of the ltp tests such as ldd01 & nm01 fail
 INHIBIT_PACKAGE_STRIP_FILES = "${prefix}/testcases/bin/nm01 ${prefix}/testcases/bin/ldd01"
-INSANE_SKIP_${PN} += "already-stripped staticdev"
+INSANE_SKIP:${PN} += "already-stripped staticdev"
 
 remove_broken_musl_sources() {
 	[ "${TCLIBC}" = "musl" ] || return 0
@@ -132,4 +132,4 @@ do_patch[postfuncs] += "remove_broken_musl_sources"
 # exist on the running system.  For instance it has specific checks for
 # csh and ksh which are not typically part of OpenEmbedded systems (but
 # can be added via additional layers.)
-SKIP_FILEDEPS_${PN} = '1'
+SKIP_FILEDEPS:${PN} = '1'

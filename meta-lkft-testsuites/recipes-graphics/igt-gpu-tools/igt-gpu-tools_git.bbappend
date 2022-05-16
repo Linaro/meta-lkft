@@ -1,1 +1,1 @@
-PACKAGECONFIG_append = " chamelium"
+PACKAGECONFIG:append = " chamelium"

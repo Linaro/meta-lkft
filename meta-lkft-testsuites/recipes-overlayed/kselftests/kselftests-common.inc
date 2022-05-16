@@ -26,23 +26,23 @@ do_install() {
     sed -i '/^make/d' ${D}${INSTALL_PATH}/run_kselftest.sh
 }
 
-FILES_${PN} = "${INSTALL_PATH}"
+FILES:${PN} = "${INSTALL_PATH}"
 # The bpf tests depend on that the object files are installed as well.
 # OE wont throw an error if files do not exist.
-FILES_${PN} += "${INSTALL_PATH}/bpf/*.o"
-FILES_${PN}-dbg = "${INSTALL_PATH}/*/.debug /usr/src/debug/*"
+FILES:${PN} += "${INSTALL_PATH}/bpf/*.o"
+FILES:${PN}-dbg = "${INSTALL_PATH}/*/.debug /usr/src/debug/*"
 
-RDEPENDS_${PN} = "bash bc ethtool fuse-utils"
-RDEPENDS_${PN} =+ "iproute2 iproute2-devlink iproute2-nstat iproute2-ss iproute2-tc"
-RDEPENDS_${PN} =+ "iputils-ping netsniff-ng ncurses nftables perl sudo"
-RDEPENDS_${PN} =+ "python3-core python3-datetime python3-json python3-pprint"
-RDEPENDS_${PN} =+ "util-linux-lscpu util-linux-uuidgen"
-RDEPENDS_${PN}_append_x86 = " cpupower"
-RDEPENDS_${PN}_append_x86-64 = " cpupower"
-RDEPENDS_${PN}_append_libc-glibc = " glibc-utils"
+RDEPENDS:${PN} = "bash bc ethtool fuse-utils"
+RDEPENDS:${PN} =+ "iproute2 iproute2-devlink iproute2-nstat iproute2-ss iproute2-tc"
+RDEPENDS:${PN} =+ "iputils-ping netsniff-ng ncurses nftables perl sudo"
+RDEPENDS:${PN} =+ "python3-core python3-datetime python3-json python3-pprint"
+RDEPENDS:${PN} =+ "util-linux-lscpu util-linux-uuidgen"
+RDEPENDS:${PN}:append:x86 = " cpupower"
+RDEPENDS:${PN}:append:x86-64 = " cpupower"
+RDEPENDS:${PN}:append:libc-glibc = " glibc-utils"
 
-INSANE_SKIP_${PN} = "already-stripped"
+INSANE_SKIP:${PN} = "already-stripped"
 # Ignore the QA error because kselftests/bpf/ requires object files
 # ERROR message:
 # ERROR: kselftests-mainline-4.14-r0 do_package_qa: QA Issue: Architecture did not match (Unknown (0), expected AArch64) on /work/hikey-linaro-linux/kselftests-mainline/4.14-r0/packages-split/kselftests-mainline/opt/kselftests/mainline/bpf/test_tcp_estats.o
-ERROR_QA_remove = "already-stripped arch ldflags"
+ERROR_QA:remove = "already-stripped arch ldflags"

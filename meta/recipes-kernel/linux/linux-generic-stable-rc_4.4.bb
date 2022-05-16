@@ -21,7 +21,7 @@ SRC_URI = "\
 "
 
 # apply=yes indicates non-essential patches for STiH410-b2260 support
-SRC_URI_append_stih410-b2260 = "\
+SRC_URI:append:stih410-b2260 = "\
     file://0001-clk-add-flag-for-clocks-that-need-to-be-enabled-on-r.patch \
     file://0002-clk-Use-static-inline-functions-instead-of-macros-fo.patch \
     file://0003-clk-Allow-clocks-to-be-marked-as-CRITICAL.patch \
@@ -67,7 +67,7 @@ SRC_URI_append_stih410-b2260 = "\
 
 S = "${WORKDIR}/git"
 
-KERNEL_DEVICETREE_remove_juno = "arm/juno-r2.dtb"
+KERNEL_DEVICETREE:remove:juno = "arm/juno-r2.dtb"
 KERNEL_IMAGETYPE ?= "Image"
 KERNEL_CONFIG_FRAGMENTS += "\
     ${S}/kernel/configs/lkft.config \
@@ -143,7 +143,7 @@ do_configure() {
     oe_runmake -C ${B} savedefconfig
 }
 
-do_deploy_append() {
+do_deploy:append() {
     cp -a ${B}/defconfig ${DEPLOYDIR}
     cp -a ${B}/.config ${DEPLOYDIR}/config
     cp -a ${B}/vmlinux ${DEPLOYDIR}

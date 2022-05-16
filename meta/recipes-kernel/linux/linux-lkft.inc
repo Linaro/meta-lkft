@@ -11,7 +11,7 @@ inherit kernel siteinfo
 # Set the verbosity of kernel messages during runtime
 # You can define CMDLINE_DEBUG in your local.conf or distro.conf to override this behaviour  
 CMDLINE_DEBUG ?= '${@oe.utils.conditional("DISTRO_TYPE", "release", "quiet", "debug", d)}'
-CMDLINE_append = " ${CMDLINE_DEBUG} "
+CMDLINE:append = " ${CMDLINE_DEBUG} "
 
 # Kernel bootlogo is distro-specific (default is OE logo).
 # Logo resolution (qvga, vga, ...) is machine-specific.
@@ -29,7 +29,7 @@ python __anonymous () {
         d.setVar("DEPENDS", "%s dtc-native" % depends)
 }
 
-do_configure_prepend() {
+do_configure:prepend() {
     if [ -e ${WORKDIR}/defconfig ] ; then
 
         # Rename getline in ./scripts/unifdef.c
@@ -190,7 +190,7 @@ do_configure_prepend() {
     fi
 }
 
-do_configure_append() {
+do_configure:append() {
         if test -e scripts/Makefile.fwinst ; then
 		sed -i -e "s:-m0644:-m 0644:g" scripts/Makefile.fwinst
 	fi
@@ -198,7 +198,7 @@ do_configure_append() {
 
 # append DTB on DB410c
 QCOM_BOOTIMG_BUNDLE_DT = "1"
-do_compile_append_dragonboard-410c() {
+do_compile:append:dragonboard-410c() {
     if ! [ -e ${B}/arch/${ARCH}/boot/dts/${KERNEL_DEVICETREE} ] ; then
         oe_runmake ${KERNEL_DEVICETREE}
     fi
@@ -208,7 +208,7 @@ do_compile_append_dragonboard-410c() {
 # So explicitly enable it for that in here
 EXTRA_OEMAKE = "${PARALLEL_MAKE} "
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}/boot
 	make -C ${S} O=${B} ARCH=$ARCH dtbs || true
 	install -m 0644 ${B}/arch/$ARCH/boot/dts/*.dtb ${D}/boot || true
@@ -217,12 +217,12 @@ do_install_append() {
 }
 
 PACKAGES =+ "${KERNEL_PACKAGE_NAME}-devicetree-overlays"
-FILES_${KERNEL_PACKAGE_NAME}-devicetree-overlays = "/lib/firmware/*.dtbo /lib/firmware/*.dts"
-FILES_${KERNEL_PACKAGE_NAME}-devicetree += "/boot/*.dtb"
+FILES:${KERNEL_PACKAGE_NAME}-devicetree-overlays = "/lib/firmware/*.dtbo /lib/firmware/*.dts"
+FILES:${KERNEL_PACKAGE_NAME}-devicetree += "/boot/*.dtb"
 
 DEPENDS += "coreutils-native"
-RDEPENDS_${KERNEL_PACKAGE_NAME}-image_append = " ${KERNEL_PACKAGE_NAME}-devicetree"
-RRECOMMENDS_${KERNEL_PACKAGE_NAME}-image_append = " ${KERNEL_PACKAGE_NAME}-devicetree-overlays"
+RDEPENDS:${KERNEL_PACKAGE_NAME}-image:append = " ${KERNEL_PACKAGE_NAME}-devicetree"
+RRECOMMENDS:${KERNEL_PACKAGE_NAME}-image:append = " ${KERNEL_PACKAGE_NAME}-devicetree-overlays"
 
 # make[3]: *** [scripts/extract-cert] Error 1
 DEPENDS += "openssl-native"

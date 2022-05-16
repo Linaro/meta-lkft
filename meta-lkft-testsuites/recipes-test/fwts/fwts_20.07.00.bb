@@ -18,15 +18,15 @@ SRC_URI[sha256sum] = "4a8e0211b388efbcfcb6530297e9a924d0afa2d6db58e9db2f031129ed
 COMPATIBLE_HOST = "(i.86|x86_64|aarch64|powerpc64).*-linux"
 
 DEPENDS = "libpcre json-c glib-2.0 dtc bison-native libbsd"
-DEPENDS_append_libc-musl = " libexecinfo"
+DEPENDS:append:libc-musl = " libexecinfo"
 
 inherit autotools-brokensep bash-completion pkgconfig
 
 CFLAGS += "-I${STAGING_INCDIR}/json-c -Wno-error=unknown-pragmas"
-LDFLAGS_append_libc-musl = " -lexecinfo"
+LDFLAGS:append:libc-musl = " -lexecinfo"
 
-FILES_${PN} += "${libdir}/fwts/lib*${SOLIBS}"
-FILES_${PN}-dev += "${libdir}/fwts/lib*${SOLIBSDEV} ${libdir}/fwts/lib*.la"
-FILES_${PN}-staticdev += "${libdir}/fwts/lib*a"
-FILES_${PN}-dbg += "${libdir}/fwts/.debug"
+FILES:${PN} += "${libdir}/fwts/lib*${SOLIBS}"
+FILES:${PN}-dev += "${libdir}/fwts/lib*${SOLIBSDEV} ${libdir}/fwts/lib*.la"
+FILES:${PN}-staticdev += "${libdir}/fwts/lib*a"
+FILES:${PN}-dbg += "${libdir}/fwts/.debug"
 

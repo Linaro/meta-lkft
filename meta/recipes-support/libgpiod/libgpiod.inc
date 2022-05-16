@@ -13,7 +13,7 @@ EXTRA_OECONF = "--enable-tools"
 
 PACKAGES =+ " ${PN}-tools"
 
-FILES_${PN}-tools = "${bindir}/*"
+FILES:${PN}-tools = "${bindir}/*"
 
 PACKAGES =+ "libgpiodcxx"
-FILES_libgpiodcxx = "${libdir}/libgpiodcxx.so.*"
+FILES:libgpiodcxx = "${libdir}/libgpiodcxx.so.*"

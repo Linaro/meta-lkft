@@ -106,7 +106,7 @@ do_configure() {
     oe_runmake -C ${B} savedefconfig
 }
 
-do_deploy_append() {
+do_deploy:append() {
     cp -a ${B}/defconfig ${DEPLOYDIR}
     cp -a ${B}/.config ${DEPLOYDIR}/config
     cp -a ${B}/vmlinux ${DEPLOYDIR}
@@ -119,7 +119,7 @@ do_deploy_append() {
     ( cd ${B}/arch/arm64/boot/dts/qcom/ && rm -vf *ipq8074* *qcs404* *sdm845* *sm8150* *sc7180* *ipq6018* *sm8250* *qrb5165* *sm8350* *sc7280* *sa8155p* *sm8450* ) || true
 }
 
-python do_package_prepend() {
+python do_package:prepend() {
     with open(d.expand('${S}/Makefile'), 'r') as f:
         for line in f:
             if line.startswith("VERSION"):

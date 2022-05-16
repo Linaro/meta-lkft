@@ -9,14 +9,14 @@ PACKAGES = "\
     packagegroup-lkft-tools-python3 \
     "
 
-RDEPENDS_packagegroup-lkft-tools = "\
+RDEPENDS:packagegroup-lkft-tools = "\
     packagegroup-core-buildessential \
     packagegroup-lkft-tools-basics \
     packagegroup-lkft-tools-python3 \
     "
 
-SUMMARY_RDEPENDS_packagegroup-lkft-tools = "Basic tools and libraries for LKFT"
-RDEPENDS_packagegroup-lkft-tools-basics = "\
+SUMMARY:packagegroup-lkft-tools = "Basic tools and libraries for LKFT"
+RDEPENDS:packagegroup-lkft-tools-basics = "\
     cpupower \
     git \
     grep \
@@ -33,8 +33,8 @@ RDEPENDS_packagegroup-lkft-tools-basics = "\
     xz \
     "
 
-SUMMARY_packagegroup-lkft-tools-python3 = "Python3 support for running tests"
-RDEPENDS_packagegroup-lkft-tools-python3 = "\
+SUMMARY:packagegroup-lkft-tools-python3 = "Python3 support for running tests"
+RDEPENDS:packagegroup-lkft-tools-python3 = "\
     python3 \
     python3-misc \
     python3-modules \

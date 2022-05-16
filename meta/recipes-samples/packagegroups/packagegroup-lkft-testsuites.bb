@@ -2,8 +2,8 @@ SUMMARY = "Organize packages to avoid duplication across all images"
 
 inherit packagegroup
 
-SUMMARY_RDEPENDS_packagegroup-lkft-testsuites = "Test suites used by LKFT"
-RDEPENDS_packagegroup-lkft-testsuites = "\
+SUMMARY:packagegroup-lkft-testsuites = "Test suites used by LKFT"
+RDEPENDS:packagegroup-lkft-testsuites = "\
     ${@bb.utils.contains_any("TUNE_ARCH", "arm", "", "fwts", d)} \
     ${@bb.utils.contains("TUNE_ARCH", "mips", "", "\
       igt-gpu-tools \
