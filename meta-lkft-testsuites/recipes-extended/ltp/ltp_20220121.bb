@@ -25,7 +25,7 @@ CFLAGS:append:powerpc64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS:append:mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
 SRCREV = "b0561ad8d9ee9fe1244b5385e941eb65a21e91a1"
 
-SRC_URI = "git://github.com/linux-test-project/ltp.git"
+SRC_URI = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 

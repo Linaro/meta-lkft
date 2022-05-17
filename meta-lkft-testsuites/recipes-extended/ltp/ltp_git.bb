@@ -29,7 +29,7 @@ SRCREV = "12beeda351b5d758a729aaf695b836ccc9eb5304"
 
 PV = "20210927+git${SRCPV}"
 
-SRC_URI = "git://github.com/linux-test-project/ltp.git;name=ltp"
+SRC_URI = "git://github.com/linux-test-project/ltp.git;name=ltp;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 
