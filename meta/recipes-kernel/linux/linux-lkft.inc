@@ -231,6 +231,8 @@ export HOST_EXTRACFLAGS += "-I${STAGING_INCDIR_NATIVE}"
 # Makefile:23: *** dtc needs libyaml for DT
 DEPENDS += "libyaml-native"
 
+DEPENDS += "${@bb.utils.contains('ARCH', 'x86', 'elfutils-native', '', d)}"
+
 # Automatically depend on lzop/lz4-native if CONFIG_KERNEL_LZO/LZ4 is enabled
 python () {
     try:

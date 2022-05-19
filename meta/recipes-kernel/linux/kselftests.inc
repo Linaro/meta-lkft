@@ -44,7 +44,7 @@ RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests =+ "iputils-ping netsniff-ng ncurses n
 RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests =+ "python3-core python3-datetime python3-json python3-pprint"
 RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests =+ "util-linux-lscpu util-linux-uuidgen"
 RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests:append_x86 = " cpupower"
-RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests:append_x86-64 = " cpupower"
+RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests:append_x86-64 = " cpupower libelf"
 RDEPENDS:${KERNEL_PACKAGE_NAME}-selftests:append_libc-glibc = " glibc-utils"
 
 INSANE_SKIP:${KERNEL_PACKAGE_NAME}-selftests = "already-stripped"
