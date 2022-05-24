@@ -228,6 +228,9 @@ RRECOMMENDS:${KERNEL_PACKAGE_NAME}-image:append = " ${KERNEL_PACKAGE_NAME}-devic
 DEPENDS += "openssl-native"
 export HOST_EXTRACFLAGS += "-I${STAGING_INCDIR_NATIVE}"
 
+export HOSTCFLAGS="${BUILD_CFLAGS}"
+export HOSTLDFLAGS="${BUILD_LDFLAGS}"
+
 # Makefile:23: *** dtc needs libyaml for DT
 DEPENDS += "libyaml-native"
 
