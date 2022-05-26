@@ -4,7 +4,7 @@ require kselftests.inc
 DESCRIPTION = "Generic Linux Stable RC 5.5 LTS kernel"
 
 PV = "5.5+git${SRCPV}"
-SRCREV_kernel = "d5226fa6dbae0569ee43ecfc08bdcd6770fc4755"
+SRCREV_kernel ?= "d5226fa6dbae0569ee43ecfc08bdcd6770fc4755"
 SRCREV_FORMAT = "kernel"
 
 SRC_URI = "\

@@ -5,7 +5,7 @@ include conf/custom-kernel-info.inc
 DESCRIPTION = "Generic Linux kernel"
 
 PV = "4.0+git${SRCPV}"
-SRCREV_kernel = "${KERNEL_COMMIT}"
+SRCREV_kernel ?= "${KERNEL_COMMIT}"
 SRCREV_FORMAT = "kernel"
 
 KERNEL_COMMIT ?= "0adb32858b0bddf4ada5f364a84ed60b196dbcda"
