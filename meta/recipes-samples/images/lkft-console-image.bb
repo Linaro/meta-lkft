@@ -7,7 +7,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "1048576"
 
 # Add 512 MB on X15; more than that might exceed the
 # userdata partition capacity.
-IMAGE_ROOTFS_EXTRA_SPACE_am57xx-evm = "524288"
+IMAGE_ROOTFS_EXTRA_SPACE:am57xx-evm = "524288"
 
 LICENSE = "MIT"
 
