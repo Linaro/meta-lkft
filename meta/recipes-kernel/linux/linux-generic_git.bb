@@ -4,16 +4,16 @@ include conf/custom-kernel-info.inc
 
 DESCRIPTION = "Generic Linux kernel"
 
-PV = "4.0+git${SRCPV}"
+PV = "git${SRCPV}"
 SRCREV_kernel ?= "${KERNEL_COMMIT}"
 SRCREV_FORMAT = "kernel"
 
 KERNEL_COMMIT ?= "0adb32858b0bddf4ada5f364a84ed60b196dbcda"
 KERNEL_REPO ?= "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
 KERNEL_PROTOCOL ?= "https"
-KERNEL_CONFIG_aarch64 ?= "defconfig"
-KERNEL_CONFIG_arm ?= "multi_v7_defconfig"
-KERNEL_CONFIG_x86-64 ?= "x86_64_defconfig"
+KERNEL_CONFIG:aarch64 ?= "defconfig"
+KERNEL_CONFIG:arm ?= "multi_v7_defconfig"
+KERNEL_CONFIG:x86-64 ?= "x86_64_defconfig"
 
 SRC_URI = "\
     ${KERNEL_REPO};protocol=${KERNEL_PROTOCOL};nobranch=1;name=kernel \
