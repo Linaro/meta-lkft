@@ -17,7 +17,6 @@ RDEPENDS:packagegroup-lkft-tools = "\
 
 SUMMARY:packagegroup-lkft-tools = "Basic tools and libraries for LKFT"
 RDEPENDS:packagegroup-lkft-tools-basics = "\
-    cpupower \
     git \
     grep \
     haveged \
