@@ -13,6 +13,8 @@ RDEPENDS:packagegroup-lkft-testsuites = "\
     kernel-selftests \
     kselftests-mainline \
     kselftests-next \
+    libgpiod \
+    libgpiod-tools \
     ltp \
     perf-tests \
     s-suite \
