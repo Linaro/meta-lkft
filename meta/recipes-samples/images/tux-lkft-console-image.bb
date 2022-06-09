@@ -14,7 +14,6 @@ CORE_IMAGE_BASE_INSTALL += " \
     libgpiod \
     libgpiod-tools \
     ltp \
-    packagegroup-lkft-tools-python3 \
     "
 
 EXTRA_USERS_PARAMS = "\
