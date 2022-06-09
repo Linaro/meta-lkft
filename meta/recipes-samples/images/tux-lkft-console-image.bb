@@ -2,12 +2,8 @@ SUMMARY = "Basic console image for LKFT"
 
 IMAGE_FEATURES += "debug-tweaks hwcodecs splash"
 
-# Add 1 GB of extra space on image.
-IMAGE_ROOTFS_EXTRA_SPACE = "1048576"
-
-# Add 512 MB on X15; more than that might exceed the
-# userdata partition capacity.
-IMAGE_ROOTFS_EXTRA_SPACE:am57xx-evm = "524288"
+# Add 512 MB of extra space on image.
+IMAGE_ROOTFS_EXTRA_SPACE = "524288"
 
 LICENSE = "MIT"
 
