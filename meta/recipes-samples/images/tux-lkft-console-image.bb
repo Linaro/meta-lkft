@@ -1,6 +1,6 @@
 SUMMARY = "Basic console image for LKFT"
 
-IMAGE_FEATURES += "debug-tweaks hwcodecs splash"
+IMAGE_FEATURES += "debug-tweaks hwcodecs"
 
 # Add 512 MB of extra space on image.
 IMAGE_ROOTFS_EXTRA_SPACE = "524288"
