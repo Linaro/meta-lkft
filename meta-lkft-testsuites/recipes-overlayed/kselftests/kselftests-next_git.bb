@@ -8,7 +8,7 @@ SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git;pro
 # Patches inappropriate or not yet merged by upstream
 # Some patches may have been submitted to upstream
 SRC_URI += "\
-    file://0001-selftests-lib-allow-to-override-CC-in-the-top-level-Makefile-v5.12.patch \
+    file://0001-selftests-lib-allow-to-override-CC-in-the-top-level-Makefile-v5.19.patch \
 "
 
 S = "${WORKDIR}/git"
