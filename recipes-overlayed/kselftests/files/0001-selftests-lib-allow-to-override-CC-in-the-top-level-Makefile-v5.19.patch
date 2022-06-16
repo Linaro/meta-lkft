@@ -1,0 +1,32 @@
+From ce88ac06b78c83a851285d7c37cbdf8767a9413d Mon Sep 17 00:00:00 2001
+From: Fathi Boudra <fathi.boudra@linaro.org>
+Date: Wed, 22 Mar 2017 17:36:53 +0200
+Subject: [PATCH] selftests: lib: allow to override CC in the top-level
+ Makefile
+
+Relax CC assignment to allow to override CC in the top-level Makefile.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ tools/testing/selftests/lib.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/tools/testing/selftests/lib.mk b/tools/testing/selftests/lib.mk
+index 1a5cc3cd97ec..4d2576660244 100644
+--- a/tools/testing/selftests/lib.mk
++++ b/tools/testing/selftests/lib.mk
+@@ -28,9 +28,9 @@ else
+ CLANG_FLAGS     += --target=$(notdir $(CROSS_COMPILE:%-=%))
+ endif # CROSS_COMPILE
+ 
+-CC := $(LLVM_PREFIX)clang$(LLVM_SUFFIX) $(CLANG_FLAGS) -fintegrated-as
++CC ?= $(LLVM_PREFIX)clang$(LLVM_SUFFIX) $(CLANG_FLAGS) -fintegrated-as
+ else
+-CC := $(CROSS_COMPILE)gcc
++CC ?= $(CROSS_COMPILE)gcc
+ endif # LLVM
+ 
+ ifeq (0,$(MAKELEVEL))
+-- 
+2.32.0
+
