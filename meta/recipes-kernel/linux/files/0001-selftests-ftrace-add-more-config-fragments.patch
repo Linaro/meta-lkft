@@ -11,6 +11,8 @@ http://pastebin.ubuntu.com/25784377/
 after the patch:
 http://pastebin.ubuntu.com/25784387/
 
+Upstream-Status: Backport
+
 Signed-off-by: Lei Yang <Lei.Yang@windriver.com>
 Signed-off-by: Shuah Khan <shuahkh@osg.samsung.com>
 ---
