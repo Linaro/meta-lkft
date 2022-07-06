@@ -17,6 +17,8 @@ Enable configs for all testcases:
 ./scripts/kconfig/merge_config.sh .config \
 		tools/testing/selftests/*/config
 
+Upstream-Status: Backport
+
 Signed-off-by: Bamvor Jian Zhang <bamvor.zhangjian@linaro.org>
 Reviewed-by: Shuah Khan <shuahkh@osg.samsung.com>
 Signed-off-by: Shuah Khan <shuahkh@osg.samsung.com>
