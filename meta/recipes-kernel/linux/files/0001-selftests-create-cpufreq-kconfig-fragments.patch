@@ -6,6 +6,8 @@ Subject: [PATCH] selftests: create cpufreq kconfig fragments
 For the better test coverage of cpufreq driver code these extra
 configurations are needed. Enable cpufreq governors and stats.
 
+Upstream-Status: Backport
+
 Signed-off-by: Naresh Kamboju <naresh.kamboju@linaro.org>
 Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 Signed-off-by: Shuah Khan <shuahkh@osg.samsung.com>
