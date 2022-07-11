@@ -11,8 +11,6 @@ RDEPENDS:packagegroup-lkft-testsuites = "\
       igt-gpu-tools-tests \
     ", d)} \
     kernel-selftests \
-    kselftests-mainline \
-    kselftests-next \
     libgpiod \
     libgpiod-tools \
     ltp \
