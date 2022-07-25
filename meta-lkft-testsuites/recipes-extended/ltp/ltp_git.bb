@@ -21,7 +21,7 @@ export HOSTCC = "${BUILD_CC}"
 # set -fomit-frame-pointer x86-64 to handle cases where optimisation
 # is set to -O0 or frame pointers have been enabled by -fno-omit-frame-pointer
 # earlier in CFLAGS, etc.
-CFLAGS:append_x86-64 = " -fomit-frame-pointer"
+CFLAGS:append:x86-64 = " -fomit-frame-pointer"
 
 CFLAGS:append:powerpc64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS:append:mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
