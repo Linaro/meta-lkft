@@ -85,6 +85,7 @@ RDEPENDS_${PN} = "\
     gdb \
     gzip \
     iproute2 \
+    keyutils \
     ldd \
     libaio \
     logrotate \
