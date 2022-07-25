@@ -7,6 +7,8 @@ RDEPENDS_packagegroup-rpb-lkft = "\
     android-kernel-tests \
     cpupower \
     ${@bb.utils.contains_any("TUNE_ARCH", "arm mips", "", "fwts", d)} \
+    e2fsprogs \
+    e2fsprogs-mke2fs \
     git \
     grep \
     haveged \
