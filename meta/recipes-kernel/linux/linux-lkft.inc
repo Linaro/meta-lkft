@@ -234,6 +234,9 @@ export HOSTLDFLAGS="${BUILD_LDFLAGS}"
 # Makefile:23: *** dtc needs libyaml for DT
 DEPENDS += "libyaml-native"
 
+# With the latest gcc10 plugins, the host tools need gmp support
+DEPENDS += "gmp-native"
+
 DEPENDS += "${@bb.utils.contains('ARCH', 'x86', 'elfutils-native', '', d)}"
 
 # Automatically depend on lzop/lz4-native if CONFIG_KERNEL_LZO/LZ4 is enabled
