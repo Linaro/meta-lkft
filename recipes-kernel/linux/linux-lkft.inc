@@ -229,6 +229,7 @@ DEPENDS += "openssl-native"
 export HOST_EXTRACFLAGS += "-I${STAGING_INCDIR_NATIVE}"
 
 export HOSTCFLAGS="${BUILD_CFLAGS}"
+export HOSTCXXFLAGS="${BUILD_CXXFLAGS}"
 export HOSTLDFLAGS="${BUILD_LDFLAGS}"
 
 # Makefile:23: *** dtc needs libyaml for DT
