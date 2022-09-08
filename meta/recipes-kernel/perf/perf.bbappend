@@ -4,6 +4,7 @@
 # libbpf").
 PERF_SRC += "scripts"
 
+DEPENDS += "python3 python3-setuptools-native"
 RDEPENDS:${PN} += "libcap"
 RDEPENDS:${PN}-python += "libcap"
 RDEPENDS:${PN}-tests += "bash"
@@ -11,3 +12,7 @@ RDEPENDS:${PN}-tests += "bash"
 PACKAGECONFIG[coresight] = "CORESIGHT=1,,opencsd"
 
 PACKAGECONFIG:append = " coresight"
+
+export HOSTCFLAGS = "${BUILD_CFLAGS}"
+export HOSTCXXFLAGS = "${BUILD_CXXFLAGS}"
+export HOSTLDFLAGS = "${BUILD_LDFLAGS}"
