@@ -25,11 +25,11 @@ CFLAGS_append_x86-64 = " -fomit-frame-pointer"
 
 CFLAGS_append_powerpc64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS_append_mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
-SRCREV = "12beeda351b5d758a729aaf695b836ccc9eb5304"
+SRCREV = "6f88e0f6f1d6eb12c48c902f50f47ecbd3b0f18a"
 
-PV = "20210927+git${SRCPV}"
+PV = "20220527+git${SRCPV}"
 
-SRC_URI = "git://github.com/linux-test-project/ltp.git;name=ltp"
+SRC_URI = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master;name=ltp"
 
 S = "${WORKDIR}/git"
 
