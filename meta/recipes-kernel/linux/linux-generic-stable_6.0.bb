@@ -1,14 +1,14 @@
 require linux-lkft.inc
 require kselftests.inc
 
-DESCRIPTION = "Generic Linux Stable 5.19 LTS kernel"
+DESCRIPTION = "Generic Linux Stable 6.0 kernel"
 
-PV = "5.19+git${SRCPV}"
-SRCREV_kernel ?= "3d7cb6b04c3f3115719235cc6866b10326de34cd"
+PV = "6.0+git${SRCPV}"
+SRCREV_kernel ?= "4fe89d07dcc2804c8b562f6c7896a45643d34b2f"
 SRCREV_FORMAT = "kernel"
 
 SRC_URI = "\
-    git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=https;branch=linux-5.19.y;name=kernel \
+    git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=https;branch=linux-6.0.y;name=kernel \
     file://lkft.config;subdir=git/kernel/configs \
     file://distro-overrides.config;subdir=git/kernel/configs \
     file://systemd.config;subdir=git/kernel/configs \
