@@ -23,6 +23,10 @@ do_compile:append() {
 }
 
 do_install:append() {
+    # Make sure to install the user space API used by some tests
+    # but not properly declared as a build dependency
+    ${MAKE} -C ${S} ARCH=${ARCH} headers_install
+
     ${MAKE} ${KSELFTESTS_ARGS} install
     chown -R root:root ${D}
     # fixup run_kselftest.sh due to spurious lines starting by "make[1]:"
