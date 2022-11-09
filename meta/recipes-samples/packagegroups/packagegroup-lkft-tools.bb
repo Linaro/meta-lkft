@@ -17,6 +17,7 @@ RDEPENDS:packagegroup-lkft-tools = "\
 
 SUMMARY:packagegroup-lkft-tools = "Basic tools and libraries for LKFT"
 RDEPENDS:packagegroup-lkft-tools-basics = "\
+    coreutils \
     e2fsprogs \
     e2fsprogs-mke2fs \
     git \
