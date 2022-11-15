@@ -28,6 +28,7 @@ RDEPENDS:packagegroup-lkft-tools-basics = "\
     net-snmp \
     perf \
     qemu \
+    socat \
     tzdata \
     usbutils \
     xz \
