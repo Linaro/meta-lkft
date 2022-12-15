@@ -29,6 +29,7 @@ RDEPENDS:packagegroup-lkft-tools-basics = "\
     os-release \
     perf \
     qemu \
+    sed \
     socat \
     tzdata \
     usbutils \
