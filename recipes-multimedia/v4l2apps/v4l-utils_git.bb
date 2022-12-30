@@ -15,10 +15,10 @@ inherit autotools gettext pkgconfig
 PACKAGECONFIG ??= "media-ctl"
 PACKAGECONFIG[media-ctl] = "--enable-v4l-utils,--disable-v4l-utils,,"
 
-PV = "1.20.0+git"
+PV = "1.22.0+git"
 
 SRC_URI = "git://git.linuxtv.org/v4l-utils.git;protocol=https;nobranch=1"
-SRCREV = "5d8c459c1bf9c91779419c3f0c26a9caa30d9d27"
+SRCREV = "ef51009796e75b4880773141805ddb16c9fe1e70"
 
 S = "${WORKDIR}/git"
 B = "${S}"
