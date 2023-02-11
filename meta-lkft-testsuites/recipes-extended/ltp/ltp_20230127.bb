@@ -26,10 +26,7 @@ CFLAGS:append:powerpc64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS:append:mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
 SRCREV = "dd2d61ac1a1e09797a6165f478abd4a9f4f43035"
 
-SRC_URI = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https \
-           file://0001-Remove-OOM-tests-from-runtest-mm.patch \
-           file://disable_hanging_tests.patch \
-           "
+SRC_URI = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
 
 S = "${WORKDIR}/git"
 
@@ -96,6 +93,7 @@ RDEPENDS:${PN} = "\
     gdb \
     gzip \
     iproute2 \
+    keyutils \
     ldd \
     libaio \
     logrotate \
