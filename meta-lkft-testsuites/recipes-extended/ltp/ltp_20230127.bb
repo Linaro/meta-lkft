@@ -13,23 +13,40 @@ DEPENDS = "attr libaio libcap acl openssl zip-native"
 DEPENDS:append:libc-musl = " fts "
 EXTRA_OEMAKE:append:libc-musl = " LIBC=musl "
 EXTRA_OECONF:append:libc-musl = " LIBS=-lfts "
-export HOSTCC = "${BUILD_CC}"
 
 # since ltp contains x86-64 assembler which uses the frame-pointer register,
 # set -fomit-frame-pointer x86-64 to handle cases where optimisation
 # is set to -O0 or frame pointers have been enabled by -fno-omit-frame-pointer
 # earlier in CFLAGS, etc.
 CFLAGS:append:x86-64 = " -fomit-frame-pointer"
+TUNE_CCARGS:remove:x86 = "-mfpmath=sse"
+TUNE_CCARGS:remove:x86-64 = "-mfpmath=sse"
 
 CFLAGS:append:powerpc64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS:append:mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
-SRCREV = "6f88e0f6f1d6eb12c48c902f50f47ecbd3b0f18a"
+SRCREV = "dd2d61ac1a1e09797a6165f478abd4a9f4f43035"
 
-SRC_URI = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https \
+           file://0001-Remove-OOM-tests-from-runtest-mm.patch \
+           file://disable_hanging_tests.patch \
+           "
 
 S = "${WORKDIR}/git"
 
 inherit autotools-brokensep pkgconfig
+
+# Version 20220527 added KVM test infrastructure which currently fails to build with gold due to
+# SORT_NONE in linker script which isn't supported by gold:
+# https://sourceware.org/bugzilla/show_bug.cgi?id=18097
+# https://github.com/linux-test-project/ltp/commit/3fce2064b54843218d085aae326c8f7ecf3a8c41#diff-39268f0855c634ca48c8993fcd2c95b12a65b79e8d9fa5ccd6b0f5a8785c0dd6R36
+LDFLAGS:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd', '', d)}"
+
+# After 0002-kvm-use-LD-instead-of-hardcoding-ld.patch
+# https://github.com/linux-test-project/ltp/commit/f94e0ef3b7280f886384703ef9019aaf2f2dfebb
+# it fails with gold also a bit later when trying to use *-payload.bin
+# http://errors.yoctoproject.org/Errors/Details/663094/
+# work around this by forcing .bfd linked in LD when ld-is-gold is in DISTRO_FEATURES
+KVM_LD = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '${HOST_PREFIX}ld.bfd${TOOLCHAIN_OPTIONS} ${HOST_LD_ARCH}', '${LD}', d)}"
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
@@ -42,6 +59,10 @@ EXTRA_OECONF = " --with-realtime-testsuite --with-open-posix-testsuite "
 # ltp network/rpc test cases ftbfs when libtirpc is found
 EXTRA_OECONF += " --without-tirpc "
 
+do_compile() {
+    oe_runmake HOSTCC="${CC_FOR_BUILD}" HOST_CFLAGS="${CFLAGS_FOR_BUILD}" HOST_LDFLAGS="${LDFLAGS_FOR_BUILD}" KVM_LD="${KVM_LD}"
+}
+
 do_install(){
     install -d ${D}${prefix}/
     oe_runmake DESTDIR=${D} SKIP_IDCHECK=1 install include-install
@@ -53,16 +74,6 @@ do_install(){
     # http://khack.osdl.org to retrieve ltp test results run on
     # OSDL's Scaleable Test Platform, but now http://khack.osdl.org unaccessible
     rm -rf ${D}${prefix}/bin/STPfailure_report.pl
-
-    # Copy POSIX test suite into ${D}${prefix}/testcases by manual
-    cp -r testcases/open_posix_testsuite ${D}${prefix}/testcases
-
-    # Makefile were configured in the build system
-    find ${D}${prefix} -name Makefile | xargs -n 1 sed -i \
-         -e 's@[^ ]*-fdebug-prefix-map=[^ "]*@@g' \
-         -e 's@[^ ]*-fmacro-prefix-map=[^ "]*@@g' \
-         -e 's@[^ ]*-ffile-prefix-map=[^ "]*@@g' \
-         -e 's@[^ ]*--sysroot=[^ "]*@@g'
 
     # The controllers memcg_stree test seems to cause us hangs and takes 900s
     # (maybe we expect more regular output?), anyhow, skip it
@@ -85,7 +96,6 @@ RDEPENDS:${PN} = "\
     gdb \
     gzip \
     iproute2 \
-    keyutils \
     ldd \
     libaio \
     logrotate \
@@ -115,13 +125,11 @@ remove_broken_musl_sources() {
 	# sync with upstream
 	# https://github.com/linux-test-project/ltp/blob/master/ci/alpine.sh#L33
 	rm -rfv \
-		testcases/kernel/syscalls/confstr/confstr01.c \
 		testcases/kernel/syscalls/fmtmsg/fmtmsg01.c \
 		testcases/kernel/syscalls/getcontext/getcontext01.c \
 		testcases/kernel/syscalls/rt_tgsigqueueinfo/rt_tgsigqueueinfo01.c \
 		testcases/kernel/syscalls/timer_create/timer_create01.c \
-		testcases/kernel/syscalls/timer_create/timer_create03.c \
-		utils/benchmark/ebizzy-0.3
+		testcases/kernel/syscalls/timer_create/timer_create03.c
 }
 do_patch[postfuncs] += "remove_broken_musl_sources"
 
