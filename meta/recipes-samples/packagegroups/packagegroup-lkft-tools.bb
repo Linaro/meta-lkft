@@ -17,7 +17,9 @@ RDEPENDS:packagegroup-lkft-tools = "\
 
 SUMMARY:packagegroup-lkft-tools = "Basic tools and libraries for LKFT"
 RDEPENDS:packagegroup-lkft-tools-basics = "\
+    btrfs-tools \
     coreutils \
+    dosfstools \
     e2fsprogs \
     e2fsprogs-mke2fs \
     git \
@@ -26,6 +28,7 @@ RDEPENDS:packagegroup-lkft-tools-basics = "\
     jq \
     ${@bb.utils.contains("TUNE_ARCH", "arm", "", "numactl", d)} \
     net-snmp \
+    ntfsprogs \
     os-release \
     perf \
     qemu \
@@ -33,6 +36,7 @@ RDEPENDS:packagegroup-lkft-tools-basics = "\
     socat \
     tzdata \
     usbutils \
+    xfsprogs-mkfs \
     xz \
     "
 
