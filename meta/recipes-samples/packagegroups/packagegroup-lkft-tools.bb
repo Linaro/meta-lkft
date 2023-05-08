@@ -28,6 +28,7 @@ RDEPENDS:packagegroup-lkft-tools-basics = "\
     jq \
     ${@bb.utils.contains("TUNE_ARCH", "arm", "", "numactl", d)} \
     net-snmp \
+    ntfs-3g \
     ntfsprogs \
     os-release \
     perf \
