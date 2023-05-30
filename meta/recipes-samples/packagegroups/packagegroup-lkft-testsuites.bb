@@ -14,7 +14,6 @@ RDEPENDS:packagegroup-lkft-testsuites = "\
     libgpiod \
     libgpiod-tools \
     ltp \
-    perf-tests \
     s-suite \
     vdsotest \
     "

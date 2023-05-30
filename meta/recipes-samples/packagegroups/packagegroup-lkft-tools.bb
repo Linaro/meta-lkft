@@ -31,7 +31,6 @@ RDEPENDS:packagegroup-lkft-tools-basics = "\
     ntfs-3g \
     ntfsprogs \
     os-release \
-    perf \
     qemu \
     sed \
     socat \
