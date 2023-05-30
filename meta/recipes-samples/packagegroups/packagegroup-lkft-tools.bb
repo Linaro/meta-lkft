@@ -46,4 +46,5 @@ RDEPENDS:packagegroup-lkft-tools-python3 = "\
     python3 \
     python3-misc \
     python3-modules \
+    python3-scapy \
     "
